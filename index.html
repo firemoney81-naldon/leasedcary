@@ -1,23 +1,572 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Home</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <!--
-      Need a visual blank slate?
-      Remove all code in `styles.css`!
-    -->
-    <link rel="stylesheet" href="styles.css" />
-    <script type="module" src="script.js"></script>
-  </head>
-  <body>
-    <nav>
-      <a href="/" aria-current="page">Home</a>
-      <a href="/page2.html">Other page</a>
-    </nav>
+
+   <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "장기렌트카 선납금과 보증금의 차이점은 무엇인가요?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "선납금(선불금)은 매월 납부하는 렌트료의 일부를 미리 내는 것으로, 총 비용이 증가할 수 있으나 월 렌트료 부담이 줄어듭니다. 보증금은 계약 종료 후 돌려받을 수 있는 담보금으로, 초기 비용 부담이 있지만 총 렌트료를 낮추는 효과가 있습니다."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "장기렌트카 선납금은 얼마 정도가 적당한가요?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "일반적으로 렌트료의 10%~30% 사이로 설정하는 경우가 많습니다. 선납금 비율이 높아질수록 월 납입금은 감소하지만, 계약 기간이 길어질수록 총 비용이 증가할 수 있으므로 전문가와 상담 후 결정하는 것이 좋습니다."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "장기렌트카를 저렴하게 이용할 수 있는 팁이 있나요?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "비교 견적을 통해 여러 업체(롯데렌터카, SK렌터카, 현대캐피탈 등)의 프로모션 및 할인 혜택을 비교하세요. 또한 비인기 차종 선택, 계약 기간 연장(48개월 또는 60개월), 잔존가치 높은 모델 선택 등이 비용 절감에 도움이 됩니다."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "장기렌트카 계약 시 주의해야 할 사항은 무엇인가요?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "계약 전, 위약금 조항, 사고 시 면책금, 중도 해지 수수료, 정비 옵션 여부, 주행거리 제한 등을 반드시 확인해야 합니다. 특히 선납금/보증금 관련 조항을 명확히 이해하고 계약해야 불이익을 방지할 수 있습니다."
+          }
+        }
+      ]
+    }
+    </script>
+
+    <!-- 스타일: 부드럽고 다채로운 색, 타이틀 강조, 계층 구조 -->
+    <style>
+      :root {
+        --primary-color: #004d40; /* Deep Teal */
+        --secondary-color: #00796b; /* Green Teal */
+        --accent-color: #80cbc4; /* Light Teal */
+        --highlight-color: #e0f2f1; /* Pale Green */
+        --text-color: #263238; /* Dark Grey Blue */
+        --bg-light: #f5f5f5; /* Light Grey Background */
+        --bg-white: #ffffff;
+        --btn-color: #ff9800; /* Amber */
+        --btn-hover: #fb8c00; /* Darker Amber */
+      }
+      @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap');
+
+      body {
+        font-family: 'Noto Sans KR', sans-serif;
+        margin:0; padding:0;
+        background-color: var(--bg-light);
+        color: var(--text-color);
+        line-height:1.7;
+      }
+      .container {
+        max-width: 1000px;
+        margin:0 auto;
+        padding:0 20px;
+      }
+      header {
+        background-color: var(--primary-color);
+        padding: 30px 20px;
+        text-align: center;
+        color: var(--bg-white);
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      }
+      header h1 {
+        margin: 0;
+        font-size: 2.5em;
+        font-weight:700;
+      }
+      header h1 a {
+        color: var(--bg-white);
+        text-decoration: none;
+      }
+      .hero {
+        background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
+        color: var(--bg-white);
+        text-align: center;
+        padding: 80px 20px;
+        position: relative;
+        overflow: hidden;
+      }
+      .hero::before {
+        content: '';
+        position: absolute;
+        top: 0; left: 0; right: 0; bottom: 0;
+        background: url('https://images.pexels.com/photos/170811/pexels-photo-170811.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260') no-repeat center center/cover;
+        opacity: 0.2;
+        z-index: 0;
+      }
+      .hero .container {
+        position: relative;
+        z-index: 1;
+      }
+      .hero h1 {
+        font-size: 3.5em;
+        margin-bottom: 20px;
+        font-weight:700;
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+      }
+      .hero p {
+        font-size: 1.4em;
+        margin-bottom: 35px;
+        font-weight: 500;
+      }
+      .cta-btn {
+        background-color: var(--btn-color);
+        color: var(--bg-white);
+        padding: 18px 45px;
+        font-size:1.3em;
+        font-weight: bold;
+        border:none;
+        border-radius:50px;
+        cursor:pointer;
+        transition: background-color 0.3s, transform 0.2s;
+        text-decoration: none;
+        display: inline-block;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+      }
+      .cta-btn:hover {
+        background-color: var(--btn-hover);
+        transform: translateY(-3px);
+      }
+      .compare-form-box {
+        background-color: rgba(255, 255, 255, 0.95);
+        padding: 40px;
+        border-radius: 12px;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        margin-top: 30px;
+        color: var(--text-color);
+      }
+      .compare-form-box h2 {
+        color: var(--primary-color);
+        text-align: center;
+        margin-bottom: 25px;
+        font-size:2em;
+      }
+      .compare-form-box label {
+        display: block;
+        margin-bottom:8px;
+        font-weight:500;
+        font-size: 1.1em;
+      }
+      .compare-form-box input, .compare-form-box select {
+        width:100%;
+        padding:12px;
+        margin-bottom:20px;
+        border:1px solid #ddd;
+        border-radius:6px;
+        box-sizing:border-box;
+        font-size:1em;
+      }
+
+      .content-section {
+        margin-top: 40px;
+        background-color: var(--bg-white);
+        padding: 60px 0;
+        border-radius:10px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      }
+      .content-section h2 {
+        font-size: 2.5em;
+        color: var(--secondary-color);
+        margin-bottom:30px;
+        font-weight:700;
+        text-align:center;
+      }
+      .content-section h3 {
+        font-size:1.8em;
+        color: var(--primary-color);
+        margin-top:30px;
+        margin-bottom:15px;
+        border-bottom: 2px solid var(--accent-color);
+        padding-bottom: 5px;
+      }
+      .content-section p {
+        font-size: 1.1em;
+        margin-bottom: 20px;
+        line-height: 1.8;
+      }
+      .feature-grid {
+        display:flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        margin-top:30px;
+      }
+      .feature-grid .item {
+        width: calc(33.33% - 20px);
+        margin:10px;
+        padding:25px;
+        background-color: var(--highlight-color);
+        border-radius:8px;
+        text-align:center;
+        transition: transform 0.3s, box-shadow 0.3s;
+      }
+      .feature-grid .item:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+      }
+      .feature-grid .item img {
+        width:80px; height:80px;
+        margin-bottom:15px;
+      }
+      .keyword-list {
+        list-style:none;
+        padding:0;
+        display:flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin-top:30px;
+      }
+      .keyword-list li {
+        background-color: var(--secondary-color);
+        color: var(--bg-white);
+        padding:10px 20px;
+        margin:5px;
+        border-radius:20px;
+        font-weight:500;
+        font-size: 0.9em;
+      }
+      .faq-item {
+        border-bottom:1px solid #ddd;
+        padding:20px 0;
+      }
+      .faq-item h3 {
+        cursor:pointer;
+        display:flex;
+        justify-content: space-between;
+        align-items:center;
+        font-size:1.4em;
+        color: var(--primary-color);
+        margin:0;
+      }
+      .faq-item h3::after {
+        content: '+';
+        font-size:1.5em;
+        color: var(--secondary-color);
+        transition: transform 0.3s;
+      }
+      .faq-item.active h3::after {
+        content: '-';
+        transform: rotate(180deg);
+      }
+      .faq-item p {
+        display: none;
+        padding-top:15px;
+        color:#555;
+        font-size:1.1em;
+      }
+      .faq-item.active p {
+        display: block;
+      }
+
+      /* Data Visualization Styles */
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+      }
+      th, td {
+        border: 1px solid #ddd;
+        padding: 12px;
+        text-align: left;
+        font-size: 1em;
+      }
+      th {
+        background-color: var(--accent-color);
+        font-weight: bold;
+        color: var(--primary-color);
+      }
+      tr:nth-child(even) {
+        background-color: var(--highlight-color);
+      }
+      .graph-container {
+        margin-top: 30px;
+        padding: 20px;
+        background-color: var(--bg-light);
+        border-radius: 8px;
+      }
+      .graph-label {
+        font-weight: bold;
+        color: var(--primary-color);
+        margin-bottom: 10px;
+      }
+      .bar-chart {
+        display: flex;
+        align-items: flex-end;
+        height: 200px;
+        border-left: 2px solid #ccc;
+        border-bottom: 2px solid #ccc;
+        margin-top: 10px;
+      }
+      .bar {
+        width: 20%;
+        background-color: var(--secondary-color);
+        margin: 0 5%;
+        text-align: center;
+        color: var(--bg-white);
+        font-size: 0.9em;
+        transition: height 0.5s;
+        position: relative;
+      }
+      .bar span {
+        position: absolute;
+        bottom: -25px;
+        left: 50%;
+        transform: translateX(-50%);
+        color: var(--text-color);
+        font-weight: 500;
+      }
+
+      /* Footer Styles */
+      footer {
+        background-color: var(--primary-color);
+        color: var(--bg-white);
+        text-align:center;
+        padding: 40px 20px;
+        font-size:0.9em;
+        margin-top: 40px;
+      }
+      footer a {
+        color: var(--accent-color);
+        text-decoration:none;
+        margin:0 10px;
+      }
+      footer a:hover {
+        text-decoration:underline;
+      }
+
+      @media (max-width:768px) {
+        .hero h1 { font-size:2.8em; }
+        .hero p { font-size:1.2em; }
+        .cta-btn { padding:15px 30px; font-size:1.1em; }
+        .compare-form-box { padding:25px; }
+        .content-section h2 { font-size:2.2em; }
+        .feature-grid .item { width:100%; margin:10px 0; }
+        .keyword-list li { margin:3px; font-size:0.9em; }
+      }
+    </style>
+</head>
+<body>
+    <header>
+      <div class="container">
+        <h1><a href="/">장기렌트카 선납금 가격 비교 센터</a></h1>
+      </div>
+    </header>
+
     <main>
-      <h1>Home page</h1>
+      <section class="hero">
+        <div class="container">
+          <h1>2026년 장기렌트카 선납금, <br>최적의 견적을 찾아 드립니다.</h1>
+          <p>선납금, 보증금 조건별 견적 비교부터 신차 할인 정보까지 한눈에 확인하세요.</p>
+          <div class="compare-form-box">
+            <h2>무료 견적 요청하기</h2>
+            <p>간단한 정보 입력으로 롯데렌터카, SK렌터카 등<br>주요 업체들의 장기렌트 가격을 비교해보세요.</p>
+            <form action="#" method="post">
+              <label for="name">이름</label>
+              <input type="text" id="name" name="name" placeholder="이름을 입력하세요" required>
+              <label for="phone">연락처</label>
+              <input type="tel" id="phone" name="phone" placeholder="휴대폰 번호를 입력하세요" required>
+              <label for="carModel">희망 차종</label>
+              <input type="text" id="carModel" name="carModel" placeholder="예: 쏘나타, G80, 싼타페" required>
+              <label for="rentalPeriod">희망 렌탈 기간 (개월)</label>
+              <select id="rentalPeriod" name="rentalPeriod" required>
+                <option value="">선택</option>
+                <option value="36">36개월</option>
+                <option value="48">48개월</option>
+                <option value="60">60개월</option>
+              </select>
+              <button type="submit" class="cta-btn">견적 요청하고 비용 비교하기</button>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      <section class="content-section">
+        <div class="container">
+          <h2>장기렌트카 선납금, 정확히 알고 계신가요?</h2>
+          <p>
+            장기렌트카 계약 시 가장 혼동되는 부분 중 하나는 바로 초기 비용입니다. <span style="font-weight: bold;">선납금(선불금)과 보증금(담보금)은 성격이 전혀 다릅니다.</span>
+            선납금은 렌트 계약 시 일정 금액을 먼저 납부하여 월 렌트료를 낮추는 방식입니다. 이는 일종의 '미리 납부하는 렌트료'로, 계약이 끝나도 돌려받지 못합니다.
+            반면, 보증금은 차량 반납 시 환급받는 일종의 담보금으로, 초기 비용 부담이 있지만 신용도에 따라 월 렌트료를 할인받거나 계약 조건이 유리해지는 효과가 있습니다.
+            많은 소비자들이 이 두 가지 개념을 혼동하여 예상치 못한 추가 비용을 지출하는 경우가 많습니다. 2026년 최신 기준으로, 각 옵션의 장단점을 명확히 파악하는 것이 중요합니다.
+          </p>
+
+          <h3 style="margin-top:50px;">선납금 vs. 보증금 비교</h3>
+          <p>내 상황에 맞는 합리적인 선택을 위해 아래 표를 통해 두 가지 방식을 비교해 보세요.</p>
+          <table>
+            <thead>
+              <tr>
+                <th>구분</th>
+                <th>선납금 (선불금)</th>
+                <th>보증금 (담보금)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>**성격**</td>
+                <td>미리 납부하는 렌트료 (환급 불가)</td>
+                <td>계약 이행 담보금 (계약 종료 시 환급 가능)</td>
+              </tr>
+              <tr>
+                <td>**월 렌트료 영향**</td>
+                <td>월 렌트료가 크게 낮아짐</td>
+                <td>월 렌트료가 소폭 낮아지거나 변동 없음</td>
+              </tr>
+              <tr>
+                <td>**총 비용**</td>
+                <td>선납금만큼 총 지출 비용 증가 (이자 성격)</td>
+                <td>총 지출 비용이 선납금 방식보다 상대적으로 저렴</td>
+              </tr>
+              <tr>
+                <td>**장점**</td>
+                <td>월 납입금 부담이 적음, 신용도 낮아도 이용 가능</td>
+                <td>계약 만료 시 환급 가능, 총 렌트 비용 절감</td>
+              </tr>
+              <tr>
+                <td>**단점**</td>
+                <td>환급 불가, 중도 해지 시 손해율 증가</td>
+                <td>초기 자금 부담, 신용도에 따라 조건 달라짐</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="graph-container">
+            <h3>장기렌트 초기 비용 선택에 따른 총 지출 변화 (예시: 48개월 기준)</h3>
+            <div class="bar-chart">
+              <div class="bar" style="height: 80%;">선납금 30% 조건<span>총 비용 (높음)</span></div>
+              <div class="bar" style="height: 65%;">보증금 30% 조건<span>총 비용 (중간)</span></div>
+              <div class="bar" style="height: 50%;">보증금/선납금 없음<span>총 비용 (가장 낮음)</span></div>
+            </div>
+          </div>
+
+          <p style="margin-top:40px;">*위 그래프는 일반적인 예시이며, 실제 비용은 업체별 프로모션, 차종, 기간, 신용도 등에 따라 달라질 수 있습니다. 특히 롯데렌터카나 SK렌터카 같은 대형 업체들은 초기 비용 조건에 따라 다양한 할인 혜택을 제공합니다. 2026년 최신 정보에 따르면, 선납금을 20% 이상 납부하는 경우 월 렌트료가 20~30% 낮아지는 효과를 볼 수 있습니다.</p>
+
+        </div>
+      </section>
+
+      <section class="content-section">
+        <div class="container">
+          <h2>장기렌트카 비교 견적, 왜 전문가에게 맡겨야 할까요?</h2>
+          <div class="feature-grid">
+            <div class="item">
+              <img src="https://images.pexels.com/photos/3137000/pexels-photo-3137000.jpeg?auto=compress&cs=tinysrgb&h=80&w=80" alt="계약서 아이콘">
+              <h3>투명한 조건 비교</h3>
+              <p>수십 개 업체의 견적을 실시간으로 분석하여, 가장 저렴한 가격의 상품을 추천해 드립니다. 선납금, 보증금, 계약기간, 주행거리 등 모든 조건을 투명하게 비교합니다.</p>
+            </div>
+            <div class="item">
+              <img src="https://images.pexels.com/photos/4050306/pexels-photo-4050306.jpeg?auto=compress&cs=tinysrgb&h=80&w=80" alt="할인 아이콘">
+              <h3>숨겨진 할인 혜택 찾기</h3>
+              <p>업체별 프로모션, 제휴 카드 할인, 신규 가입 혜택, 비인기 차종 할인 등 숨겨진 할인 요소를 찾아내어 총 비용을 최소화합니다. 현금지원이나 상품권 이벤트도 놓치지 않습니다.</p>
+            </div>
+            <div class="item">
+              <img src="https://images.pexels.com/photos/4050316/pexels-photo-4050316.jpeg?auto=compress&cs=tinysrgb&h=80&w=80" alt="상담 아이콘">
+              <h3>1:1 맞춤 상담</h3>
+              <p>고객의 신용 등급, 운행 패턴, 희망 차량 등을 고려하여 가장 적합한 견적을 제안합니다. 복잡한 서류 절차도 간소화하여 편안하게 이용할 수 있도록 돕습니다.</p>
+            </div>
+          </div>
+
+          <h3 style="margin-top:50px;">함께 많이 찾는 키워드</h3>
+          <ul class="keyword-list">
+            <li>#장기렌트카선납금</li>
+            <li>#장기렌트카가격비교</li>
+            <li>#장기렌트카단점</li>
+            <li>#장기렌트카보증금</li>
+            <li>#장기렌트카견적</li>
+            <li>#장기렌트카싼곳</li>
+            <li>#장기렌트카후기</li>
+            <li>#신차장기렌트</li>
+            <li>#롯데렌터카가격</li>
+            <li>#SK렌터카견적</li>
+            <li>#현대캐피탈장기렌트</li>
+            <li>#장기렌트카전문업체</li>
+            <li>#장기렌트카할인율</li>
+            <li>#장기렌트카내돈내산</li>
+            <li>#2026장기렌트</li>
+            <li>#장기렌트카단점</li>
+            <li>#장기렌트카신규가입</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="content-section">
+        <div class="container">
+          <h2>장기렌트카 비용 절약 노하우 5가지 (2026년 업데이트)</h2>
+          <p>많은 분들이 장기렌트카를 저렴하게 이용하고 싶어하지만, 어떤 요소를 고려해야 할지 모르는 경우가 많습니다. 2026년 최신 기준으로 비용을 절감할 수 있는 팁을 공개합니다.</p>
+          
+          <h3>1. 선납금, 보증금 조건 최적화</h3>
+          <p>앞서 설명드렸듯이 선납금과 보증금 중 어떤 것이 유리한지는 개인의 재정 상황에 따라 다릅니다. 당장의 월 납입금을 낮추고 싶다면 선납금, 총 비용을 절약하고 싶다면 보증금 납부 방식이 유리합니다. <span style="font-weight: bold;">최적의 비율을 설정하기 위해 반드시 전문가와 상담하여 예상 총 비용을 확인하세요.</span></p>
+
+          <h3>2. 계약 기간 및 주행 거리 선택</h3>
+          <p>장기렌트카는 보통 36개월, 48개월, 60개월 계약이 일반적입니다. 계약 기간이 길어질수록 월 렌트료가 저렴해지는 경향이 있습니다. 또한 주행 거리 약정(연 1만km, 2만km 등)도 가격에 큰 영향을 미치므로, 자신의 운전 습관에 맞는 주행 거리를 설정해야 합니다. 주행 거리를 초과하면 위약금이 발생하므로 정확한 예측이 중요합니다.</p>
+
+          <h3>3. 신차 대신 재고차/인기 없는 옵션 활용</h3>
+          <p>급하게 차량이 필요하거나 가격 절감이 최우선이라면, 업체에서 보유하고 있는 재고 차량을 활용하는 것이 좋습니다. 재고차는 즉시 출고가 가능하며, 할인 혜택이 적용되어 월 렌트료가 일반 신차보다 저렴합니다. 또한 비인기 색상이나 옵션이 적은 차량을 선택하면 가격이 더욱 낮아집니다. 많은 고객들이 장기렌트카 싼곳을 찾을 때 이 방법을 선호합니다.</p>
+
+          <h3>4. 보험 조건 확인 및 정비 옵션 선택</h3>
+          <p>장기렌트카는 렌트 업체 보험으로 가입되지만, 면책금(사고 발생 시 본인 부담금) 조건은 업체마다 다릅니다. 면책금이 낮은 곳을 선택하거나, 운전 경력이 짧아 보험료가 높은 분들은 렌트카를 이용하는 것이 훨씬 유리합니다. 정비 옵션(유지보수, 소모품 교체 등) 포함 여부도 가격을 좌우합니다. 정비 옵션을 제외하면 월 납입금이 낮아지지만, 직접 정비해야 하는 번거로움이 있습니다.</p>
+
+          <h3>5. 다양한 업체 비교 견적</h3>
+          <p>장기렌트카 시장에는 롯데렌터카, SK렌터카, 현대캐피탈, AJ셀카 등 대형 렌터카 업체와 수많은 에이전시가 존재합니다. 각 업체는 특정 차종이나 기간에 따라 다른 할인율을 적용합니다. 한두 곳만 알아보고 계약하면 손해를 볼 수 있습니다. 반드시 3~5곳 이상의 견적을 비교해보고, 내돈내산 후기들을 참고하여 최종적으로 가장 합리적인 조건을 선택해야 합니다.</p>
+        </div>
+      </section>
+
+      <section class="content-section">
+        <div class="container">
+          <h2>자주 묻는 질문 (FAQ)</h2>
+
+          <div class="faq-item">
+            <h3>장기렌트카 선납금을 납부하면 월 렌트료가 얼마나 줄어드나요?</h3>
+            <p>선납금은 전체 렌트료에서 일정 비율을 미리 납부하는 것이므로, 납부하는 비율에 따라 월 렌트료가 줄어듭니다. 예를 들어, 렌트 기간이 48개월이고 총 렌트료가 2천만 원인데 20% (4백만 원)를 선납한다면, 나머지 1,600만 원을 48개월로 나누어 납부하게 됩니다. 선납금은 선불 이자 성격을 가지므로, 총 비용 측면에서는 보증금보다 불리할 수 있지만, 당장의 월 납입 부담을 줄이는 데 효과적입니다.</p>
+          </div>
+
+          <div class="faq-item">
+            <h3>장기렌트카 중도 해지 시 선납금은 어떻게 되나요?</h3>
+            <p>선납금은 환급되지 않는 비용입니다. 중도 해지 시에는 남은 기간의 렌트료에 대한 위약금을 내야 하며, 선납금은 돌려받지 못합니다. 따라서 계약 기간을 채우지 못할 가능성이 있다면 선납금 납부는 신중하게 결정해야 합니다. 보증금은 위약금을 제외한 나머지 금액을 돌려받을 수 있으므로 중도 해지 시 손해율이 상대적으로 낮습니다.</p>
+          </div>
+
+          <div class="faq-item">
+            <h3>신용 등급이 낮은 경우에도 장기렌트카 이용이 가능한가요?</h3>
+            <p>일반적으로 신차 할부 구매보다는 장기렌트카 심사 기준이 유연합니다. 신용 등급이 7~8등급이어도 렌트카 이용이 가능한 경우가 많습니다. 다만, 신용도가 낮으면 보증금 납부 조건이 필수적으로 요구되거나, 월 렌트료가 높아질 수 있습니다. 선납금을 통해 초기 비용을 높게 지불하면 심사 통과에 유리할 수 있습니다.</p>
+          </div>
+          
+          <div class="faq-item">
+            <h3>장기렌트카 만료 시 차량 인수가 유리한가요, 반납이 유리한가요?</h3>
+            <p>만료 시점의 차량 잔존가치와 중고차 시세를 비교하여 결정합니다. 중고차 시세가 잔존가치보다 높으면 인수하여 판매하는 것이 유리하며, 시세가 낮으면 반납하는 것이 이득입니다. 렌트 계약 시점에서 잔존가치와 인수 비용을 미리 확인하는 것이 중요합니다. 특히 2026년 이후에는 전기차 등 친환경차의 중고차 시장이 확대되고 있어 이 부분을 면밀히 검토해야 합니다.</p>
+          </div>
+
+          <div class="faq-item">
+            <h3>장기렌트카 견적 비교 시 어떤 점을 중점적으로 봐야 하나요?</h3>
+            <p>단순히 월 렌트료의 '최저가'만을 비교해서는 안 됩니다. 차량 옵션, 정비 서비스 포함 여부, 보험 조건(면책금), 주행거리 제한, 중도 해지 수수료율 등 숨겨진 비용을 종합적으로 고려해야 합니다. 특히 장기렌트카 업체별로 프로모션이나 사은품(현금지원, 상품권)이 달라질 수 있으므로, 총 지출 비용을 기준으로 비교해야 합니다. 2026년 기준, 차량용 반도체 수급 문제로 출고 기간이 길어지는 경우가 많으므로 즉시 출고 가능 여부도 중요한 비교 포인트입니다.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="content-section">
+        <div class="container">
+          <h2>신뢰할 수 있는 외부 자료 및 참고 링크</h2>
+          <p>장기렌트카 계약은 신중해야 하는 금융 상품이므로, 관련 법규와 소비자 보호 규정을 확인하는 것이 중요합니다.</p>
+          <ul>
+            <li><a href="https://www.law.go.kr/법령/여신전문금융업법" target="_blank" rel="noopener">법제처 - 여신전문금융업법</a>: 렌트카/리스업 등 여신 전문 금융업에 대한 법적 규제 및 정의를 확인할 수 있습니다.</li>
+            <li><a href="https://www.kca.go.kr/index.do" target="_blank" rel="noopener">한국소비자원</a>: 렌터카 관련 소비자 피해 구제 사례 및 주의사항을 확인할 수 있습니다.</li>
+            <li><a href="https://www.molit.go.kr/portal/policy/policyDataList.do?policyCode=E02" target="_blank" rel="noopener">국토교통부 자동차 관련 정책</a>: 자동차 등록, 관리, 보험 관련 정부 정책 정보를 제공합니다.</li>
+            <li><a href="https://namu.wiki/w/%EC%9E%A5%EA%B8%B0%EB%A0%8C%ED%8A%B8%EC%B9%B4" target="_blank" rel="noopener">나무위키 - 장기렌트카</a>: 장기렌트카에 대한 대중적 정보 및 장단점을 쉽게 확인할 수 있습니다.</li>
+            <li><a href="https://www.fss.or.kr/fss/main/index.jsp" target="_blank" rel="noopener">금융감독원</a>: 금융상품 가입 시 유의사항 및 금융 소비자 보호 관련 정보를 제공합니다.</li>
+          </ul>
+        </div>
+      </section>
+
     </main>
-  </body>
-</html>
+
+    <script>
+      // FAQ 토글 기능
+      document.querySelectorAll('.faq-item h3').forEach(item => {
+        item.addEventListener('click', event => {
+          const parent = item.parentElement;
+          parent.classList.toggle('active');
+        });
+      });
+    </script>
+  
